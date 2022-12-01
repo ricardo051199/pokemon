@@ -3,6 +3,5 @@ export class CreateLeaderDto {
   gender: string;
   years: number;
   home: string;
-  gym: string;
   urlImgProfile: string;
 }

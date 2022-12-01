@@ -1,6 +1,14 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Pokemon } from '../../pokemons/entities/pokemon.entity';
+import { Gym } from '../../gyms/entities/gym.entity';
 
-@Entity()
+@Entity('leaders')
 export class Leader {
   @PrimaryGeneratedColumn()
   id: number;
@@ -13,7 +21,11 @@ export class Leader {
   @Column()
   home: string;
   @Column()
-  gym: string;
-  @Column()
   urlImgProfile: string;
+
+  @ManyToOne(() => Pokemon, (pokemon) => pokemon.leader)
+  pokemon: Pokemon;
+
+  @ManyToOne(() => Gym, (gym) => gym.leader)
+  gym: Gym;
 }

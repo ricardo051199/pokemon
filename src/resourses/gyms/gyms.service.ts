@@ -18,7 +18,12 @@ export class GymsService {
 
   findBy(search: string) {
     return this.gymRepository.find({
-      where: [{ name: search }, { type: search }, { location: search }],
+      where: [
+        { name: search },
+        { type: search },
+        { location: search },
+        { region: search },
+      ],
     });
   }
 
