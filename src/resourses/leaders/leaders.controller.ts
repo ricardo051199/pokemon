@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { LeadersService } from './leaders.service';
 import { CreateLeaderDto } from './dto/create-leader.dto';
 import { UpdateLeaderDto } from './dto/update-leader.dto';
@@ -23,7 +31,10 @@ export class LeadersController {
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateLeaderDto: UpdateLeaderDto) {
+  async update(
+    @Param('id') id: string,
+    @Body() updateLeaderDto: UpdateLeaderDto,
+  ) {
     await this.leadersService.update(+id, updateLeaderDto);
   }
 

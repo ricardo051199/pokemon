@@ -1,4 +1,4 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Leader } from '../../leaders/entities/leader.entity';
 
 @Entity('gyms')
@@ -20,6 +20,6 @@ export class Gym {
   @Column()
   urlImgMedal: string;
 
-  @OneToOne(() => Leader, (leader) => leader.gym)
-  leader: Leader;
+  @OneToMany(() => Leader, (leader) => leader.gym)
+  leader: Leader[];
 }

@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { GymsService } from './gyms.service';
 import { CreateGymDto } from './dto/create-gym.dto';
 import { UpdateGymDto } from './dto/update-gym.dto';
@@ -18,7 +26,7 @@ export class GymsController {
   }
 
   @Get(':search')
-  findBy(@Param('search') search: string) {
+  findOne(@Param('search') search: string) {
     return this.gymsService.findBy(search);
   }
 

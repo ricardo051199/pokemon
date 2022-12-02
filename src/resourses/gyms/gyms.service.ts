@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Gym } from './entities/gym.entity';
 import { CreateGymDto } from './dto/create-gym.dto';
 import { UpdateGymDto } from './dto/update-gym.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Gym } from './entities/gym.entity';
-import { Repository } from 'typeorm';
 
 @Injectable()
 export class GymsService {
@@ -17,21 +17,14 @@ export class GymsService {
   }
 
   findBy(search: string) {
-    return this.gymRepository.find({
-      where: [
-        { name: search },
-        { type: search },
-        { location: search },
-        { region: search },
-      ],
-    });
+    return this.gymRepository.find();
   }
 
-  async update(id: number, updateGymDto: UpdateGymDto) {
-    await this.gymRepository.update({ id }, updateGymDto);
+  update(id: number, updateGymDto: UpdateGymDto) {
+    return this.gymRepository.update({ id }, updateGymDto);
   }
 
-  async remove(id: number) {
-    await this.gymRepository.delete(id);
+  remove(id: number) {
+    return this.gymRepository.delete(id);
   }
 }
