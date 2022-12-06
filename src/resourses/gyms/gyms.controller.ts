@@ -25,8 +25,8 @@ export class GymsController {
     return this.gymsService.findAll();
   }
 
-  @Get(':search')
-  findOne(@Param('search') search: string) {
+  @Get('search/:search')
+  findby(@Param('search') search: string) {
     return this.gymsService.findBy(search);
   }
 
@@ -38,5 +38,10 @@ export class GymsController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.gymsService.remove(+id);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.gymsService.findOne(+id);
   }
 }

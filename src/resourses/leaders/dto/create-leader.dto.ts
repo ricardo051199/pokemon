@@ -4,4 +4,6 @@ export class CreateLeaderDto {
   years: number;
   home: string;
   urlImgProfile: string;
+  pokemonId: number;
+  gymId: number;
 }

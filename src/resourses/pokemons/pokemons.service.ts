@@ -15,11 +15,13 @@ export class PokemonsService {
   }
 
   findAll() {
-    return this.pokemonRepository.find();
+    return this.pokemonRepository.find({ relations: { leader: true } });
   }
 
   findBy(search: string) {
-    return this.pokemonRepository.find();
+    return this.pokemonRepository.find({
+      where: [{ name: search }, { type1: search }, { type2: search }],
+    });
   }
 
   update(id: number, updatePokemonDto: UpdatePokemonDto) {
@@ -28,5 +30,11 @@ export class PokemonsService {
 
   remove(id: number) {
     return this.pokemonRepository.delete(id);
+  }
+  findOne(id: number) {
+    return this.pokemonRepository.findOne({
+      where: { id },
+      relations: { leader: true },
+    });
   }
 }

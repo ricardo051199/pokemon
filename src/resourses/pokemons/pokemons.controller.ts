@@ -25,7 +25,7 @@ export class PokemonsController {
     return this.pokemonsService.findAll();
   }
 
-  @Get(':search')
+  @Get('search/:search')
   findBy(@Param('search') search: string) {
     return this.pokemonsService.findBy(search);
   }
@@ -41,5 +41,10 @@ export class PokemonsController {
   @Delete(':id')
   async remove(@Param('id') id: string) {
     await this.pokemonsService.remove(+id);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.pokemonsService.findOne(+id);
   }
 }

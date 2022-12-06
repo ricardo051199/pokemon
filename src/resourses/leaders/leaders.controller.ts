@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { LeadersService } from './leaders.service';
 import { CreateLeaderDto } from './dto/create-leader.dto';
@@ -16,8 +17,11 @@ export class LeadersController {
   constructor(private readonly leadersService: LeadersService) {}
 
   @Post()
-  create(@Body() createLeaderDto: CreateLeaderDto) {
-    return this.leadersService.create(createLeaderDto);
+  create(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() createLeaderDto: CreateLeaderDto,
+  ) {
+    return this.leadersService.create(id, createLeaderDto);
   }
 
   @Get()
@@ -41,5 +45,10 @@ export class LeadersController {
   @Delete(':id')
   async remove(@Param('id') id: string) {
     await this.leadersService.remove(+id);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.leadersService.findOne(+id);
   }
 }

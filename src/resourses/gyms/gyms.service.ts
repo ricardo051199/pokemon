@@ -13,11 +13,18 @@ export class GymsService {
   }
 
   findAll() {
-    return this.gymRepository.find();
+    return this.gymRepository.find({ relations: { leader: true } });
   }
 
   findBy(search: string) {
-    return this.gymRepository.find();
+    return this.gymRepository.find({
+      where: [
+        { name: search },
+        { location: search },
+        { region: search },
+        { type: search },
+      ],
+    });
   }
 
   update(id: number, updateGymDto: UpdateGymDto) {
@@ -26,5 +33,12 @@ export class GymsService {
 
   remove(id: number) {
     return this.gymRepository.delete(id);
+  }
+
+  findOne(id: number) {
+    return this.gymRepository.findOne({
+      where: { id },
+      relations: { leader: true },
+    });
   }
 }
