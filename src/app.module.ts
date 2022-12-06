@@ -5,6 +5,8 @@ import { LeadersModule } from './resourses/leaders/leaders.module';
 import { GymsModule } from './resourses/gyms/gyms.module';
 import { PokemonsModule } from './resourses/pokemons/pokemons.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsersModule } from './resourses/users/users.module';
+import { AuthModule } from './resourses/auth/auth.module';
 
 @Module({
   imports: [
@@ -21,6 +23,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: false,
       autoLoadEntities: true,
     }),
+    UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
