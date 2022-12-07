@@ -36,9 +36,11 @@ export class GymsService {
   }
 
   findOne(id: number) {
-    return this.gymRepository.findOne({
-      where: { id },
-      relations: { leader: true },
-    });
+    if (this.gymRepository.findOne({ where: { id } })) {
+      return this.gymRepository.findOne({
+        where: { id },
+        relations: { leader: true },
+      });
+    }
   }
 }

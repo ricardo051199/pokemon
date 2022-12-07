@@ -21,14 +21,13 @@ export class AuthController {
 
   @UseGuards(AuthGuard('local'))
   @Post()
-  async login(@Body() user) {
+  async login(@Body() user: any) {
     return this.authService.login(user);
   }
   // @Post()
   // findAll(@Body() user: CreateUserDto) {
   //   return this.authService.validateUser(user.username, user.password);
   // }
-
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.authService.findOne(+id);
