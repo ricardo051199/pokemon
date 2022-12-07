@@ -21,10 +21,10 @@ export class UsersController {
     if (await this.usersService.findBy(createUserDto['username'])) {
       return 'The user already exist.';
     } else {
-      const saltOrRounds = 10;
+      const salt = await bcrypt.genSalt();
       createUserDto['password'] = await bcrypt.hash(
         createUserDto['password'],
-        saltOrRounds,
+        salt,
       );
       return this.usersService.create(createUserDto);
     }
